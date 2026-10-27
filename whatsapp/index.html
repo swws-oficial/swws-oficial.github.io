@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vincular WhatsApp · S.W.W.S</title>
+<style>
+  :root { --teal:#042D35; --teal2:#0B3C42; --teal3:#165A65; --gold:#C9A44C; --gold2:#E2C77E;
+          --white:#F4F1EC; --silver:#DDD6D2; --ok:#7CE3A1; --err:#F0A0A0; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; background:linear-gradient(160deg,var(--teal),var(--teal2));
+         color:var(--white); font-family:"Segoe UI",system-ui,sans-serif; display:flex;
+         align-items:center; justify-content:center; padding:16px; }
+  .card { width:100%; max-width:560px; background:rgba(0,0,0,.18); border:1px solid rgba(201,164,76,.35);
+          border-radius:14px; padding:28px 26px; }
+  h1 { font-family:Georgia,serif; color:var(--gold); margin:0 0 4px; font-size:26px; letter-spacing:1px; }
+  .sub { color:var(--silver); margin:0 0 20px; font-size:14px; }
+  ol { padding-left:20px; line-height:1.6; font-size:15px; margin:0 0 22px; }
+  button { width:100%; border:0; border-radius:8px; padding:14px; font-size:17px; font-weight:700;
+           background:var(--gold); color:var(--teal); cursor:pointer; }
+  button:disabled { opacity:.55; cursor:default; }
+  #st { margin-top:18px; font-size:15px; min-height:22px; }
+  .ok { color:var(--ok); } .err { color:var(--err); }
+  .rod { margin-top:22px; font-size:12px; color:var(--silver); }
+  .rod a { color:var(--gold2); }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>S.W.W.S</h1>
+  <p class="sub">Vincular o WhatsApp da empresa <b id="emp"></b> ao Emissor de NFS-e</p>
+  <ol>
+    <li>Clique em <b>Conectar WhatsApp</b> e entre com o Facebook da empresa.</li>
+    <li>Informe o número do <b>WhatsApp Business</b> da empresa.</li>
+    <li>No celular, abra o WhatsApp Business e escaneie o código QR que aparecer.</li>
+    <li>Conclua. Depois volte ao sistema: ele detecta sozinho.</li>
+  </ol>
+  <button id="btn" disabled>Conectar WhatsApp</button>
+  <div id="st">Carregando…</div>
+  <p class="rod">Conexão pela API oficial do WhatsApp (Meta). O sistema só envia as notas fiscais
+    que você mandar enviar. <a href="../privacidade.html" target="_blank">Política de privacidade</a></p>
+</div>
+<script>
+  const q = new URLSearchParams(location.search);
+  const S = q.get("s") || "", APP = q.get("app") || "", CFG = q.get("cfg") || "", FN = q.get("fn") || "";
+  document.getElementById("emp").textContent = q.get("emp") || "";
+  const st = document.getElementById("st"), btn = document.getElementById("btn");
+  const msg = (t, c) => { st.textContent = t; st.className = c || ""; };
+  let enviado = false;
+
+  async function enviar(dados) {
+    const r = await fetch(FN, { method: "POST", headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify(Object.assign({ s: S }, dados)) });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok || d.erro) throw new Error(d.erro || ("HTTP " + r.status));
+  }
+
+  window.addEventListener("message", async (ev) => {
+    if (!ev.origin.endsWith("facebook.com")) return;
+    let d; try { d = JSON.parse(ev.data); } catch (_) { return; }
+    if (!d || d.type !== "WA_EMBEDDED_SIGNUP") return;
+    if (String(d.event).startsWith("FINISH")) {
+      try {
+        await enviar({ evento: d.event, waba_id: d.data.waba_id, phone_id: d.data.phone_number_id });
+        enviado = true;
+        msg("✔ WhatsApp vinculado! Pode fechar esta página e voltar ao sistema.", "ok");
+      } catch (e) { msg("Erro ao concluir: " + e.message, "err"); }
+    } else if (d.event === "CANCEL") {
+      msg("Vinculação interrompida" + (d.data && d.data.current_step ? " (" + d.data.current_step + ")" : "")
+          + ". Clique em Conectar WhatsApp para tentar de novo.", "err");
+      btn.disabled = false;
+    } else if (d.event === "ERROR") {
+      const m = (d.data && d.data.error_message) || "erro na Meta";
+      enviar({ erro: m }).catch(() => {});
+      msg("Erro: " + m, "err");
+    }
+  });
+
+  window.fbAsyncInit = function () {
+    FB.init({ appId: APP, autoLogAppEvents: true, xfbml: true, version: "v26.0" });
+    btn.disabled = false; msg("");
+  };
+
+  btn.onclick = function () {
+    btn.disabled = true; msg("Abrindo a janela da Meta…");
+    FB.login(async function (resp) {
+      if (resp.authResponse && resp.authResponse.code) {
+        try { await enviar({ code: resp.authResponse.code });
+              if (!enviado) msg("Concluindo a vinculação…"); }
+        catch (e) { msg("Erro: " + e.message, "err"); btn.disabled = false; }
+      } else if (!enviado) {
+        msg("A janela da Meta foi fechada sem concluir.", "err"); btn.disabled = false;
+      }
+    }, { config_id: CFG, response_type: "code", override_default_response_type: true,
+         extras: { version: "v5" } });
+  };
+
+  if (!S || !APP || !CFG || !FN) {
+    msg("Abra esta página pelo sistema (⚙ Configuração › 📱 WhatsApp › Vincular).", "err");
+  } else {
+    const js = document.createElement("script");
+    js.async = true; js.defer = true; js.crossOrigin = "anonymous";
+    js.src = "https://connect.facebook.net/pt_BR/sdk.js";
+    js.onerror = () => msg("Não foi possível carregar a Meta. Verifique a internet.", "err");
+    document.body.appendChild(js);
+  }
+</script>
+</body>
+</html>
