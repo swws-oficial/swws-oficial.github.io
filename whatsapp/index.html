@@ -83,11 +83,12 @@
 
   btn.onclick = function () {
     btn.disabled = true; msg("Abrindo a janela da Meta…");
-    FB.login(async function (resp) {
-      if (resp.authResponse && resp.authResponse.code) {
-        try { await enviar({ code: resp.authResponse.code });
-              if (!enviado) msg("Concluindo a vinculação…"); }
-        catch (e) { msg("Erro: " + e.message, "err"); btn.disabled = false; }
+    // o SDK da Meta só aceita função comum (não "async") como retorno do login
+    FB.login(function (resp) {
+      if (resp && resp.authResponse && resp.authResponse.code) {
+        enviar({ code: resp.authResponse.code })
+          .then(function () { if (!enviado) msg("Concluindo a vinculação…"); })
+          .catch(function (e) { msg("Erro: " + e.message, "err"); btn.disabled = false; });
       } else if (!enviado) {
         msg("A janela da Meta foi fechada sem concluir.", "err"); btn.disabled = false;
       }
