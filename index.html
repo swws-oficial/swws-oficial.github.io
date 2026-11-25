@@ -3,71 +3,395 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>S.W.W.S – Secure Workflow Solutions</title>
-<meta name="description" content="S.W.W.S – Secure Workflow Solutions: sistemas de gestão e emissor de NFS-e para empresas. Três Lagoas/MS.">
+<title>S.W.W.S – Sistemas de gestão e emissor de NFS-e | Três Lagoas/MS</title>
+<meta name="description" content="Sistemas de gestão, emissor de NFS-e com envio por WhatsApp, conversão de dados e suporte técnico para empresas e escritórios de contabilidade em Três Lagoas/MS e região.">
+<meta name="theme-color" content="#042D35">
 <link rel="icon" href="favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="S.W.W.S – Secure Workflow Solutions">
+<meta property="og:description" content="Mais controle, menos dor de cabeça. Sistemas de gestão e emissor de NFS-e em Três Lagoas/MS.">
+<meta property="og:image" content="logo.png">
+<link rel="preload" as="image" href="fondo-aguila.jpg" media="(min-width:701px)">
+<meta property="og:locale" content="pt_BR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "S.W.W.S – Secure Workflow Solutions",
+  "description": "Sistemas de gestão, emissor de NFS-e, conversão de dados e suporte técnico.",
+  "image": "logo.png",
+  "telephone": "+55 18 99140-6153",
+  "email": "secureworflowsolutions@gmail.com",
+  "taxID": "68.138.945/0001-08",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Alameda José Célio Costa, 264",
+    "addressLocality": "Três Lagoas",
+    "addressRegion": "MS",
+    "postalCode": "79645-021",
+    "addressCountry": "BR"
+  },
+  "areaServed": "Três Lagoas e região",
+  "sameAs": ["https://www.instagram.com/secure._workflow._solutions/"]
+}
+</script>
 <style>
-  :root { --teal:#042D35; --teal2:#0B3C42; --teal3:#165A65; --gold:#C9A44C; --gold2:#E2C77E;
-          --white:#F4F1EC; --silver:#DDD6D2; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--teal); color:var(--white);
-         font:16px/1.6 "Segoe UI",system-ui,-apple-system,sans-serif; }
-  a { color:var(--gold2); }
-  header { background:linear-gradient(160deg,var(--teal),var(--teal2)); border-bottom:3px solid var(--gold);
-           padding:40px 16px 36px; text-align:center; }
-  header img { width:150px; height:150px; }
-  h1 { font-family:Georgia,serif; color:var(--gold); font-size:40px; letter-spacing:3px; margin:10px 0 0; }
-  .sub { color:var(--white); font-size:18px; margin:0; }
-  .lema { color:var(--silver); font-style:italic; margin-top:8px; }
-  main { max-width:960px; margin:0 auto; padding:32px 16px 48px; }
-  h2 { font-family:Georgia,serif; color:var(--gold); font-size:24px; margin:36px 0 12px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
-  .card { background:rgba(0,0,0,.18); border:1px solid rgba(201,164,76,.35); border-radius:12px; padding:18px; }
-  .card h3 { margin:0 0 6px; color:var(--gold2); font-size:17px; }
-  .card p { margin:0; color:var(--silver); font-size:15px; }
-  .contato p { margin:4px 0; }
-  footer { border-top:1px solid rgba(201,164,76,.35); text-align:center; color:var(--silver);
-           font-size:13px; padding:20px 16px; }
+  :root{
+    --petroleo:#042D35;   /* fundo principal */
+    --petroleo-2:#0B3C42; /* faixas */
+    --petroleo-3:#1B636D; /* linhas e realces frios */
+    --ouro:#C9A44C;       /* acento principal */
+    --ouro-claro:#E8C76A;
+    --prata:#C3BDB9;      /* acento secundário / texto suave */
+    --papel:#F6F3EC;      /* a nota fiscal */
+    --tinta:#14262A;      /* texto sobre papel */
+    --ok:#2E8B57;
+    --max:1120px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--petroleo);color:#EEF0EC;
+       font:400 17px/1.65 "Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+       -webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  /* águila de circuitos fija detrás de toda la página */
+  body::before{content:"";position:fixed;inset:0;z-index:-1;
+       background:linear-gradient(rgba(4,45,53,.18),rgba(4,45,53,.42)),
+                  url("fondo-aguila.jpg") center 40%/cover no-repeat var(--petroleo)}
+  @media (max-width:700px){
+    body::before{background-image:linear-gradient(rgba(4,45,53,.25),rgba(4,45,53,.5)),url("fondo-aguila-m.jpg")}
+  }
+  a{color:var(--ouro-claro)}
+  :focus-visible{outline:3px solid var(--ouro-claro);outline-offset:3px;border-radius:4px}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  /* leve sombra para ler bem sobre o relevo da águia */
+  .hero-grid>div:first-child,.titulo,.outras,.cont-grid>div,.passos,.ct-grid>div:first-child,.topo{text-shadow:0 1px 3px rgba(0,0,0,.55)}
+  h1,h2,h3{font-family:"Gloock",Georgia,serif;font-weight:400;line-height:1.12;margin:0}
+
+  /* ---------- topo ---------- */
+  .topo{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
+  .marca{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
+  .marca img{width:46px;height:46px}
+  .marca b{font-family:"Gloock",serif;font-weight:400;font-size:22px;letter-spacing:.06em;color:var(--ouro)}
+  .marca span{display:block;font-size:13px;color:var(--prata);line-height:1.2}
+  .topo nav{display:flex;gap:26px;align-items:center}
+  .topo nav a{color:var(--prata);text-decoration:none;font-size:15px}
+  .topo nav a:hover{color:#fff}
+  .btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:13px 24px;
+       font-weight:600;font-size:16px;text-decoration:none;border:2px solid transparent;cursor:pointer}
+  .btn-ouro{background:var(--ouro);color:var(--petroleo)}
+  .btn-ouro:hover{background:var(--ouro-claro)}
+  .btn-linha{border-color:rgba(201,164,76,.55);color:#fff}
+  .btn-linha:hover{border-color:var(--ouro-claro)}
+  .btn svg{width:20px;height:20px;flex:none}
+  .topo .btn{padding:9px 18px;font-size:15px}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+             padding:56px 0 88px}
+  .hero h1{font-size:clamp(42px,6vw,76px);color:#fff;letter-spacing:-.01em}
+  .hero h1 em{font-style:normal;color:var(--ouro)}
+  .hero .lead{font-size:19px;color:#D7DCD8;max-width:34em;margin:24px 0 32px}
+  .hero .acoes{display:flex;flex-wrap:wrap;gap:14px}
+  .hero .onde{margin-top:28px;font-size:15px;color:var(--prata)}
+
+  /* a nota fiscal: o elemento memorável da página */
+  .nota-palco{position:relative;display:flex;justify-content:center}
+  .nota{position:relative;width:min(400px,100%);background:var(--papel);color:var(--tinta);
+        border-radius:6px 6px 0 0;padding:26px 26px 34px;transform:rotate(1.6deg);
+        box-shadow:0 30px 60px -20px rgba(0,0,0,.55);
+        font-size:14px;line-height:1.45}
+  .nota::after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:12px;
+        background:linear-gradient(-45deg,transparent 8px,var(--papel) 0) 0 0/16px 12px,
+                   linear-gradient(45deg,transparent 8px,var(--papel) 0) 0 0/16px 12px;
+        background-repeat:repeat-x}
+  .nota-cab{display:flex;justify-content:space-between;align-items:flex-start;
+            border-bottom:1.5px dashed #9AA6A3;padding-bottom:12px;margin-bottom:12px}
+  .nota-cab strong{font-family:"Gloock",serif;font-weight:400;font-size:20px;display:block}
+  .nota-cab small{color:#56686A}
+  .nota-cab .num{text-align:right;font-variant-numeric:tabular-nums;color:#56686A}
+  .campo{display:grid;grid-template-columns:96px 1fr;gap:8px;padding:6px 0;border-bottom:1px solid #E1DDD3}
+  .campo dt{color:#6A7A7C}
+  .campo dd{margin:0;font-weight:600}
+  .valor{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px}
+  .valor span{color:#6A7A7C}
+  .valor b{font-family:"Gloock",serif;font-weight:400;font-size:30px;font-variant-numeric:tabular-nums}
+  .carimbo{position:absolute;left:29%;top:20px;z-index:2;border:3px solid var(--ok);color:var(--ok);
+           border-radius:8px;padding:4px 12px;font-weight:700;font-size:18px;letter-spacing:.08em;
+           transform:rotate(-12deg);background:rgba(246,243,236,.85)}
+  .envio{position:absolute;left:-28px;bottom:-34px;display:flex;align-items:center;gap:10px;
+         background:#fff;color:var(--tinta);border-radius:14px;padding:10px 16px 10px 12px;
+         box-shadow:0 16px 36px -12px rgba(0,0,0,.5);font-size:14px;transform:rotate(-1.5deg);z-index:2}
+  .envio i{width:34px;height:34px;border-radius:50%;background:#25D366;display:grid;place-items:center;flex:none}
+  .envio i svg{width:20px;height:20px;fill:#fff}
+  .envio b{display:block;font-size:14px}
+  .envio small{color:#6A7A7C}
+
+  /* sequência de emissão: um único momento animado ao carregar */
+  @media (prefers-reduced-motion:no-preference){
+    .nota .campo,.nota .valor{opacity:0;animation:aparece .45s ease-out forwards}
+    .nota .campo:nth-of-type(1){animation-delay:.35s}
+    .nota .campo:nth-of-type(2){animation-delay:.6s}
+    .nota .campo:nth-of-type(3){animation-delay:.85s}
+    .nota .valor{animation-delay:1.1s}
+    .carimbo{opacity:0;animation:carimba .35s cubic-bezier(.2,1.6,.4,1) 1.65s forwards}
+    .envio{opacity:0;animation:sobe .5s ease-out 2.25s forwards}
+    @keyframes aparece{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    @keyframes carimba{from{opacity:0;transform:rotate(-12deg) scale(1.9)}to{opacity:1;transform:rotate(-12deg) scale(1)}}
+    @keyframes sobe{from{opacity:0;transform:translateY(14px) rotate(-1.5deg)}to{opacity:1;transform:rotate(-1.5deg)}}
+  }
+
+  /* ---------- seções ---------- */
+  section{padding:96px 0}
+  .titulo{max-width:40em;margin-bottom:48px}
+  .titulo h2{font-size:clamp(32px,4vw,46px);color:#fff}
+  .titulo p{color:var(--prata);font-size:18px;margin:14px 0 0}
+
+  /* soluções: lista com o emissor em destaque, não cartões iguais */
+  .solucoes{display:grid;grid-template-columns:1.25fr 1fr;gap:28px}
+  .principal{background:var(--papel);color:var(--tinta);border-radius:18px;padding:40px}
+  .principal h3{font-size:32px}
+  .principal p{color:#3B4E51;margin:14px 0 22px}
+  .principal ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+  .principal li{display:flex;gap:12px;align-items:flex-start}
+  .principal li svg{width:22px;height:22px;flex:none;margin-top:2px;stroke:var(--petroleo-3)}
+  .outras{display:flex;flex-direction:column}
+  .outra{padding:24px 0;border-top:1px solid rgba(195,189,185,.25)}
+  .outra:first-child{border-top:0;padding-top:4px}
+  .outra h3{font-size:24px;color:var(--ouro)}
+  .outra p{margin:6px 0 0;color:#D2D8D5}
+
+  /* contadores */
+  .contadores{background:rgba(4,45,53,.62);border-top:1px solid rgba(201,164,76,.25);border-bottom:1px solid rgba(201,164,76,.25)}
+  .cont-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .cont-grid h2{font-size:clamp(30px,3.6vw,42px);color:#fff}
+  .cont-grid p{color:#D2D8D5}
+  .fluxo{list-style:none;margin:0;padding:0;position:relative}
+  .fluxo li{position:relative;padding:0 0 26px 44px;color:#E6EAE7}
+  .fluxo li:last-child{padding-bottom:0}
+  .fluxo li::before{content:"";position:absolute;left:9px;top:8px;width:14px;height:14px;border-radius:50%;
+                    background:var(--petroleo);border:3px solid var(--ouro)}
+  .fluxo li:not(:last-child)::after{content:"";position:absolute;left:16px;top:26px;bottom:2px;width:2px;
+                    background:rgba(201,164,76,.4)}
+  .fluxo b{display:block;color:#fff}
+
+  /* como começamos: sequência real, por isso numerada */
+  .passos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;counter-reset:p}
+  .passos li{counter-increment:p;border-top:2px solid var(--ouro);padding-top:18px}
+  .passos li::before{content:counter(p);font-family:"Gloock",serif;font-size:44px;color:var(--ouro);line-height:1;display:block;margin-bottom:10px}
+  .passos h3{font-family:"Figtree",sans-serif;font-weight:700;font-size:19px;color:#fff}
+  .passos p{margin:6px 0 0;color:#D2D8D5;font-size:16px}
+
+  /* contato */
+  .contato{background:linear-gradient(rgba(4,45,53,0),rgba(4,45,53,.55))}
+  .ct-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+  .ct-grid h2{font-size:clamp(34px,4.4vw,54px);color:#fff}
+  .ct-grid .lead{color:#D2D8D5;font-size:18px;margin:16px 0 28px}
+  .dados{background:rgba(4,45,53,.6);border:1px solid rgba(201,164,76,.35);border-radius:18px;padding:28px 30px;font-size:16px}
+  .dados dl{margin:0;display:grid;gap:14px}
+  .dados dt{color:var(--prata);font-size:14px}
+  .dados dd{margin:2px 0 0}
+  .dados a{text-decoration:none}
+  .dados a:hover{text-decoration:underline}
+
+  footer{background:rgba(2,30,38,.8);border-top:1px solid rgba(201,164,76,.25);padding:28px 0;color:var(--prata);font-size:14px}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+  .zap-fixo{position:fixed;right:20px;bottom:20px;width:60px;height:60px;border-radius:50%;
+            background:#25D366;display:grid;place-items:center;box-shadow:0 10px 26px rgba(0,0,0,.4);z-index:10}
+  .zap-fixo svg{width:32px;height:32px;fill:#fff}
+
+  /* ---------- telas menores ---------- */
+  @media (max-width:900px){
+    .topo nav a:not(.btn){display:none}
+    .hero-grid,.solucoes,.cont-grid,.ct-grid{grid-template-columns:1fr}
+    .hero-grid{gap:64px;padding:32px 0 96px}
+    .passos{grid-template-columns:1fr 1fr}
+    section{padding:72px 0}
+    .principal{padding:30px 24px}
+  }
+  @media (max-width:520px){
+    body{font-size:16px}
+    .marca span{display:none}
+    .passos{grid-template-columns:1fr}
+    .envio{left:-6px}
+    .nota{transform:none}
+    .nota-cab .num{display:none}
+    .carimbo{left:auto;right:16px;top:18px;font-size:15px}
+  }
 </style>
 </head>
 <body>
-<header>
-  <img src="logo.png" alt="Logotipo S.W.W.S">
-  <h1>S.W.W.S</h1>
-  <p class="sub">Secure Workflow Solutions</p>
-  <p class="lema">"Mais controle, menos dor de cabeça"</p>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="topo">
+      <a class="marca" href="#" aria-label="S.W.W.S, início">
+        <img src="logo.png" alt="" width="46" height="46">
+        <div><b>S.W.W.S</b><span>Secure Workflow Solutions</span></div>
+      </a>
+      <nav aria-label="Menu principal">
+        <a href="#solucoes">Soluções</a>
+        <a href="#contadores">Para contadores</a>
+        <a href="#como">Como começamos</a>
+        <a class="btn btn-linha" href="#contato">Contato</a>
+      </nav>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <h1>Mais controle, menos dor de cabeça.</h1>
+        <p class="lead">Sistemas de gestão e emissor de nota fiscal para comércios e prestadores de
+          serviço. A nota sai certa, chega ao seu cliente pelo WhatsApp e o contador recebe sem você
+          precisar lembrar.</p>
+        <div class="acoes">
+          <a class="btn btn-ouro" href="https://wa.me/5518991406153?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20S.W.W.S%20e%20quero%20saber%20mais." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.2c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.2.5.1.6 0l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.3Z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a class="btn btn-linha" href="#solucoes">Ver soluções</a>
+        </div>
+        <p class="onde">Três Lagoas/MS e região, com suporte remoto onde você estiver.</p>
+      </div>
+
+      <div class="nota-palco" aria-hidden="true">
+        <div class="nota">
+          <div class="nota-cab">
+            <div><strong>NFS-e</strong><small>Padrão nacional</small></div>
+            <div class="num">Nº 000128<br><small>24/11/2026</small></div>
+          </div>
+          <dl>
+            <div class="campo"><dt>Prestador</dt><dd>Oficina do Bairro Ltda</dd></div>
+            <div class="campo"><dt>Tomador</dt><dd>Maria A. Souza</dd></div>
+            <div class="campo"><dt>Serviço</dt><dd>Revisão completa + troca de óleo</dd></div>
+          </dl>
+          <div class="valor"><span>Valor total</span><b>R$ 480,00</b></div>
+          <div class="carimbo">AUTORIZADA</div>
+          <div class="envio">
+            <i><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.2c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.2.5.1.6 0l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.3Z"/></svg></i>
+            <div><b>Nota enviada para Maria</b><small>PDF entregue pelo WhatsApp</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
+
 <main>
-  <p>A S.W.W.S desenvolve e implanta sistemas de gestão para empresas de comércio e serviços,
-     com foco em emissão fiscal, controle e segurança das informações. Atendemos empresas e
-     escritórios de contabilidade em Três Lagoas/MS e região.</p>
+  <section id="solucoes">
+    <div class="wrap">
+      <div class="titulo">
+        <h2>O que a S.W.W.S resolve na sua empresa</h2>
+        <p>Sistemas instalados e configurados por quem vai te atender depois. Sem central de
+           atendimento, sem protocolo: você fala direto com o responsável.</p>
+      </div>
 
-  <h2>Soluções</h2>
-  <div class="grid">
-    <div class="card"><h3>Emissor de NFS-e</h3>
-      <p>Emissão de Nota Fiscal de Serviço eletrônica pelo padrão nacional, com envio da nota ao
-         cliente por e-mail e WhatsApp e ao escritório de contabilidade.</p></div>
-    <div class="card"><h3>Gestão comercial (PDV/ERP)</h3>
-      <p>Implantação, suporte e treinamento em sistemas de vendas, estoque e financeiro.</p></div>
-    <div class="card"><h3>Conversão de dados</h3>
-      <p>Migração de clientes, produtos e serviços entre sistemas, sem perda de informações.</p></div>
-    <div class="card"><h3>Suporte técnico</h3>
-      <p>Atendimento remoto e presencial, redes, backup e segurança dos dados da empresa.</p></div>
-  </div>
+      <div class="solucoes">
+        <article class="principal">
+          <h3>Emissor de NFS-e</h3>
+          <p>Emissão de Nota Fiscal de Serviço eletrônica pelo padrão nacional, feita para o dia a
+             dia de quem presta serviço.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>
+                Envio da nota em PDF ao cliente pelo WhatsApp oficial e por e-mail</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>
+                Cópia automática para o seu escritório de contabilidade</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>
+                Cadastro de clientes e serviços para emitir em poucos cliques</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>
+                Atualizações enviadas direto para o seu computador</li>
+          </ul>
+        </article>
 
-  <h2>Contato</h2>
-  <div class="card contato">
-    <p><b>Razão social:</b> 68.138.945 JOCELIN GREILIANA FRANCO</p>
-    <p><b>Nome fantasia:</b> S.W.W.S – Secure Workflow Solutions</p>
-    <p><b>CNPJ:</b> 68.138.945/0001-08</p>
-    <p><b>Endereço:</b> Alameda José Célio Costa, 264 – Três Lagoas/MS – CEP 79645-021</p>
-    <p><b>Telefone / WhatsApp:</b> <a href="tel:+5518991406153">+55 (18) 99140-6153</a></p>
-    <p><b>E-mail:</b> <a href="mailto:secureworflowsolutions@gmail.com">secureworflowsolutions@gmail.com</a></p>
-  </div>
+        <div class="outras">
+          <div class="outra">
+            <h3>Gestão comercial</h3>
+            <p>Implantação, treinamento e suporte em sistemas de vendas (PDV), estoque e financeiro.</p>
+          </div>
+          <div class="outra">
+            <h3>Conversão de dados</h3>
+            <p>Vai trocar de sistema? Levamos clientes, produtos e serviços para o sistema novo sem
+               perder informação.</p>
+          </div>
+          <div class="outra">
+            <h3>Suporte técnico</h3>
+            <p>Atendimento remoto e presencial: redes, cópias de segurança e proteção dos dados da empresa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contadores" class="contadores">
+    <div class="wrap cont-grid">
+      <div>
+        <h2>Para escritórios de contabilidade</h2>
+        <p>A S.W.W.S trabalha lado a lado com escritórios de Três Lagoas. Quando o seu cliente
+           usa o nosso emissor, as notas chegam até você organizadas, sem precisar cobrar ninguém
+           no fim do mês.</p>
+        <p>Indique a S.W.W.S para os seus clientes e conte com a gente para implantar, treinar e
+           dar suporte.</p>
+      </div>
+      <ol class="fluxo">
+        <li><b>O cliente emite a nota</b>No emissor S.W.W.S, no computador da empresa.</li>
+        <li><b>O tomador recebe na hora</b>PDF pelo WhatsApp e por e-mail.</li>
+        <li><b>O escritório recebe a cópia</b>Sem planilha, sem foto de nota, sem atraso.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="como">
+    <div class="wrap">
+      <div class="titulo">
+        <h2>Como começamos</h2>
+      </div>
+      <ol class="passos">
+        <li><h3>Conversa</h3><p>Você conta como a empresa trabalha hoje, pelo WhatsApp ou pessoalmente.</p></li>
+        <li><h3>Análise</h3><p>Visitamos a empresa e indicamos o sistema que resolve o seu caso.</p></li>
+        <li><h3>Implantação</h3><p>Instalamos, levamos os seus dados e treinamos a equipe.</p></li>
+        <li><h3>Suporte</h3><p>Acompanhamos o dia a dia, com atendimento remoto e presencial.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="contato" class="contato">
+    <div class="wrap ct-grid">
+      <div>
+        <h2>Vamos conversar?</h2>
+        <p class="lead">Mande uma mensagem contando o que a sua empresa precisa. A resposta é de quem
+           vai cuidar do seu sistema.</p>
+        <a class="btn btn-ouro" href="https://wa.me/5518991406153?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20S.W.W.S%20e%20quero%20saber%20mais." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.2c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.2.5.1.6 0l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.3Z"/></svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+      <div class="dados">
+        <dl>
+          <div><dt>Telefone e WhatsApp</dt><dd><a href="tel:+5518991406153">(18) 99140-6153</a></dd></div>
+          <div><dt>E-mail</dt><dd><a href="mailto:secureworflowsolutions@gmail.com">secureworflowsolutions@gmail.com</a></dd></div>
+          <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/secure._workflow._solutions/" target="_blank" rel="noopener">@secure._workflow._solutions</a></dd></div>
+          <div><dt>Endereço</dt><dd>Alameda José Célio Costa, 264<br>Três Lagoas/MS · CEP 79645-021</dd></div>
+          <div><dt>Empresa</dt><dd>68.138.945 JOCELIN GREILIANA FRANCO<br>CNPJ 68.138.945/0001-08</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
 </main>
+
 <footer>
-  © 2026 S.W.W.S – Secure Workflow Solutions · CNPJ 68.138.945/0001-08 ·
-  <a href="privacidade.html">Política de Privacidade</a>
+  <div class="wrap">
+    <span>© 2026 S.W.W.S – Secure Workflow Solutions</span>
+    <a href="privacidade.html">Política de Privacidade</a>
+  </div>
 </footer>
+
+<a class="zap-fixo" href="https://wa.me/5518991406153?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20S.W.W.S%20e%20quero%20saber%20mais." target="_blank" rel="noopener" aria-label="Falar com a S.W.W.S no WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.2c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.2.5.1.6 0l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.3Z"/></svg>
+</a>
+
 </body>
 </html>
